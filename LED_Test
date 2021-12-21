@@ -1,0 +1,74 @@
+int red = 1;
+int green = 2;
+int blue = 3;
+
+void setup(){
+pinMode(red, OUTPUT);
+pinMode(green, OUTPUT);
+pinMode(blue, OUTPUT);
+}
+
+void loop(){
+
+// Red light
+analogWrite(red, 255);
+analogWrite(green, 0);
+analogWrite(blue, 0);
+delay(8000);
+
+// Yellow light
+analogWrite(red, 255);
+analogWrite(green, 255);
+analogWrite(blue, 0);
+delay(3000);
+
+// Green light
+analogWrite(red, 0);
+analogWrite(green, 255);
+analogWrite(blue, 0);
+delay(8000);
+
+// Rainbow
+// Red
+analogWrite(red, 255);
+analogWrite(green, 0);
+analogWrite(blue, 0);
+delay(2000);
+
+//Orange
+analogWrite(red, 255);
+analogWrite(green, 140);
+analogWrite(blue, 0);
+delay(2000);
+
+//Yellow
+analogWrite(red, 255);
+analogWrite(green, 255);
+analogWrite(blue, 0);
+delay(2000);
+
+//Green
+analogWrite(red, 0);
+analogWrite(green, 205);
+analogWrite(blue, 0);
+delay(2000);
+
+//Sky
+analogWrite(red, 0);
+analogWrite(green, 255);
+analogWrite(blue, 255);
+delay(2000);
+
+//Blue
+analogWrite(red, 0);
+analogWrite(green, 0);
+analogWrite(blue, 255);
+delay(2000);
+
+//purple
+analogWrite(red, 95);
+analogWrite(green, 0);
+analogWrite(blue, 255);
+delay(2000);
+
+}
