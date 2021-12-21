@@ -1,0 +1,61 @@
+int red = 1;
+int green = 2;
+int blue = 3;
+int cds = A0;
+
+void setup(){
+pinMode(red, OUTPUT);
+pinMode(green, OUTPUT);
+pinMode(blue, OUTPUT);
+pinMode(cds, INPUT);
+Serial.begin(9600);
+}
+
+void loop(){
+int cdsValue = map(analogRead(cds), 0, 1023, 0, 255); //센서 값(0~1023)을 LED 값(0~255)로 변환하는 함수
+Serial.print(“실시간 조도: “);
+Serial.println(cdsValue);
+
+// Rainbow
+// Red
+analogWrite(red, 255-cdsValue);
+analogWrite(green, 0);
+analogWrite(blue, 0);
+delay(2000);
+
+//Orange
+analogWrite(red, 255-cdsValue);
+analogWrite(green, 140-cdsValue);
+analogWrite(blue, 0);
+delay(2000);
+
+//Yellow
+analogWrite(red, 255-cdsValue);
+analogWrite(green, 255-cdsValue);
+analogWrite(blue, 0);
+delay(2000);
+
+//Green
+analogWrite(red, 0);
+analogWrite(green, 205-cdsValue);
+analogWrite(blue, 0);
+delay(2000);
+
+//Sky
+analogWrite(red, 0);
+analogWrite(green, 255-cdsValue);
+analogWrite(blue, 255-cdsValue);
+delay(2000);
+
+//Blue
+analogWrite(red, 0);
+analogWrite(green, 0);
+analogWrite(blue, 255-cdsValue);
+delay(2000);
+
+//purple
+analogWrite(red, 95-cdsValue);
+analogWrite(green, 0);
+analogWrite(blue, 255-cdsValue);
+delay(2000);
+}
