@@ -1,0 +1,25 @@
+#include <DHT11.h>
+int pin = A1;
+DHT11 dht11(pin);
+int humidifier = 2;
+
+void setup(){
+ Serial.begin(9600);
+}
+
+void loop(){
+ 
+ float temp, humi;
+ dht11.read(humi, temp);
+ Serial.print("실시간 습도: ");
+ Serial.println(humi);
+ int h = humi;
+ delay(500);
+
+ if (h <60) {
+ digitalWrite(humidifier, on);
+ } else {
+ digitalWrite(humidifier, off);
+ }
+ 
+}
