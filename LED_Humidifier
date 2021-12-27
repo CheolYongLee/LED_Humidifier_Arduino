@@ -1,0 +1,73 @@
+int red = 11;
+int green = 10;
+int blue = 9;
+#include <DHT11.h>
+int cds = A0;
+int pin = A1;
+DHT11 dht11(pin);
+int humidifier = 2;
+
+void setup(){
+ pinMode(red, OUTPUT);
+ pinMode(green, OUTPUT);
+ pinMode(blue, OUTPUT);
+ pinMode(cds, INPUT);
+ Serial.begin(9600);
+}
+
+void loop(){
+
+ int cdsValue = map(analogRead(cds), 0, 1023, 0, 255); //센서 값(0~1023)을 LED 값(0~255)로 변환하는 함수
+ Serial.print(“실시간 조도: “);
+ Serial.println(cdsValue);
+ 
+ float temp, humi;
+ dht11.read(humi, temp);
+ Serial.print("실시간 습도: ");
+ Serial.println(humi);
+ int h = humi;
+ delay(500);
+
+ if (h < 31)
+    {Serial.println(h);
+     analogWrite(red, 255-cdsValue);
+     analogWrite(green, 0-cdsValue);
+     analogWrite(blue, 0-cdsValue);} //빨강
+
+ else if (h < 41)
+    {Serial.println(h);
+     analogWrite(red, 255-cdsValue);
+     analogWrite(green, 255-cdsValue);
+     analogWrite(blue, 0-cdsValue);} //노랑
+
+ else if (h < 51)
+    {Serial.println(h); 
+     analogWrite(red, 0-cdsValue);
+     analogWrite(green, 255-cdsValue);
+     analogWrite(blue, 0-cdsValue);} //초록
+
+ else if (h < 61)
+    {Serial.println(h); 
+     analogWrite(red, 0-cdsValue);
+     analogWrite(green, 255-cdsValue);
+     analogWrite(blue, 255-cdsValue);} //청록
+
+ else if (h < 71)
+    {Serial.println(h); 
+     analogWrite(red, 0-cdsValue);
+     analogWrite(green, 0-cdsValue);
+     analogWrite(blue, 255-cdsValue);} //파랑
+
+ else 
+    {Serial.println(h); 
+     analogWrite(red, 255-cdsValue);
+     analogWrite(green, 0-cdsValue);
+     analogWrite(blue, 255-cdsValue);} //보라
+
+ if (h <60) {
+ digitalWrite(humidifier, on);
+ } else {
+ digitalWrite(humidifier, off);
+ }
+ 
+}
